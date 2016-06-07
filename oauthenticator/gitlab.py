@@ -27,7 +27,7 @@ GITLAB_USER_API = '%s/api/v3/user' % GITLAB_HOST
 
 class GitLabMixin(OAuth2Mixin):
     _OAUTH_AUTHORIZE_URL = "https://%s/oauth/authorize" % GITLAB_HOST
-    _OAUTH_ACCESS_TOKEN_URL = "https://%s/oauth/access_token" % GITLAB_HOST
+    _OAUTH_ACCESS_TOKEN_URL = "https://%s/oauth/token" % GITLAB_HOST
 
 
 class GitLabLoginHandler(OAuthLoginHandler, GitLabMixin):
@@ -60,7 +60,7 @@ class GitLabOAuthenticator(OAuthenticator):
         )
 
 
-        url = url_concat("https://%s/oauth/access_token" % GITLAB_HOST,
+        url = url_concat("https://%s/oauth/token" % GITLAB_HOST,
                          params)
         bb_header = {"Content-Type":
                      "application/x-www-form-urlencoded;charset=utf-8"}
