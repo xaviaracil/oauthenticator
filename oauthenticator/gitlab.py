@@ -80,7 +80,7 @@ class GitLabOAuthenticator(OAuthenticator):
         # Determine who the logged in user is
         headers={"Accept": "application/json",
                  "User-Agent": "JupyterHub",
-                 "Authorization": "token {}".format(access_token)
+                 "Authorization": "Bearer {}".format(access_token)
         }
         req = HTTPRequest("https://%s" % GITLAB_USER_API,
                           method="GET",
