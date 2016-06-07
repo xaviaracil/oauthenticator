@@ -50,9 +50,6 @@ class GitLabOAuthenticator(OAuthenticator):
         http_client = AsyncHTTPClient()
 
         # Exchange the OAuth code for a GitLab Access Token
-        #
-        # See: https://developer.github.com/v3/oauth/
-
         # GitLab specifies a POST request yet requires URL parameters
         params = dict(
             client_id=self.client_id,
