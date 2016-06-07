@@ -68,4 +68,32 @@ For a Google Apps domain you can set:
     c.GoogleOAuthenticator.hosted_domain = 'mycollege.edu'
     c.GoogleOAuthenticator.login_service = 'My College'
 ```
+## GitLab Setup
 
+First, you'll need to create a [GitLab OAuth
+application](http://docs.gitlab.com/ce/integration/oauth_provider.html) in your GitLab instance or https://gitlab.com. Make sure the
+callback URL is:
+
+    http[s]://[your-host]/hub/oauth_callback
+
+Where `[your-host]` is where your server will be running. Such as
+`example.com:8000`.
+
+Then, add the following to your `jupyterhub_config.py` file:
+
+    c.JupyterHub.authenticator_class = 'oauthenticator.GitLabOAuthenticator'
+
+(you can also use `LocalGitLabOAuthenticator` to handle both local and GitHub
+auth).
+
+You will additionally need to specify the OAuth callback URL, the host of your GitLab instance (if so), the client ID, and
+the client secret (you should have gotten these when you created your OAuth app
+on GitHub). For example, if these values are in the environment variables
+`$GITLAB_HOST`, `$OAUTH_CALLBACK_URL`, `$GITLAB_CLIENT_ID` and `$GITLAB_CLIENT_SECRET`, you
+should add the following to your `jupyterhub_config.py`:
+```
+    c.GitLabOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
+    c.GitLabOAuthenticator.gitlab_host = os.environ['GITLAB_HOST']
+    c.GitLabOAuthenticator.client_id = os.environ['GITLAB_CLIENT_ID']
+    c.GitLabOAuthenticator.client_secret = os.environ['GITLAB_CLIENT_SECRET']
+```  

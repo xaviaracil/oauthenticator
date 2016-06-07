@@ -3,9 +3,9 @@
 c = get_config()
 
 c.JupyterHub.log_level = 10
-c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
+c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitLabOAuthenticator'
 
-c.LocalGitHubOAuthenticator.create_system_users = True
+c.LocalGitLabOAuthenticator.create_system_users = True
 
 c.Authenticator.whitelist = whitelist = set()
 c.JupyterHub.admin_users = admin = set()
@@ -29,7 +29,7 @@ with open(join(root, 'userlist')) as f:
         if len(parts) > 1 and parts[1] == 'admin':
             admin.add(name)
 
-c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
+c.GitLabOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
 
 # ssl config
 ssl = join(root, 'ssl')
