@@ -1,6 +1,6 @@
 # add your github oauth config to this file,
 # and run the container with `docker run -it -p 9000:8000 --env-file=env jupyterhub-oauth`
-GITLAB_CLIENT_ID=ca2e1179981b78533a5e3e3fc83fad03a931d98b71be1b09ec9a395d0c50ed34
-GITLAB_CLIENT_SECRET=8ba2037a97bc3492c66d5d41c4cbc6109f4a862a600a00e55e3e00bc719e5ddb
-GITLAB_HOST=devel.elearnlab.org
+GITLAB_CLIENT_ID=
+GITLAB_CLIENT_SECRET=
+GITLAB_HOST=
 OAUTH_CALLBACK_URL=https://192.168.99.100:8000/hub/oauth_callback
