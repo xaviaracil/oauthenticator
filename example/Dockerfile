@@ -19,4 +19,4 @@ ADD userlist /srv/oauthenticator/userlist
 ADD ssl /srv/oauthenticator/ssl
 RUN chmod 700 /srv/oauthenticator
 
-RUN ["sh", "/srv/oauthenticator/addusers.sh"]
+#RUN ["sh", "/srv/oauthenticator/addusers.sh"]
