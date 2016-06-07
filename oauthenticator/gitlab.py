@@ -7,6 +7,7 @@ Most of the code c/o Kyle Kelley (@rgbkrk)
 
 import json
 import os
+import urllib
 
 from tornado.auth import OAuth2Mixin
 from tornado import gen, web
@@ -50,20 +51,25 @@ class GitLabOAuthenticator(OAuthenticator):
         http_client = AsyncHTTPClient()
 
         # Exchange the OAuth code for a GitLab Access Token
-        # GitLab specifies a POST request yet requires URL parameters
         params = dict(
             client_id=self.client_id,
             client_secret=self.client_secret,
-            code=code
+            grant_type="authorization_code",
+            code=code,
+            redirect_uri=self.oauth_callback_url
         )
+
 
         url = url_concat("https://%s/oauth/access_token" % GITLAB_HOST,
                          params)
-
+        bb_header = {"Content-Type":
+                     "application/x-www-form-urlencoded;charset=utf-8"}
         req = HTTPRequest(url,
                           method="POST",
-                          headers={"Accept": "application/json"},
-                          body='' # Body is required for a POST...
+                          auth_username=self.client_id,
+                          auth_password=self.client_secret,
+                          body=urllib.parse.urlencode(params).encode('utf-8'),
+                          headers=bb_header
                           )
 
         resp = yield http_client.fetch(req)
