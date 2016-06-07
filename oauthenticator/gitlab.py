@@ -39,7 +39,7 @@ class GitLabOAuthenticator(OAuthenticator):
 
     client_id_env = 'GITLAB_CLIENT_ID'
     client_secret_env = 'GITLAB_CLIENT_SECRET'
-    login_handler = GitHubLoginHandler
+    login_handler = GitLabLoginHandler
 
     @gen.coroutine
     def authenticate(self, handler, data=None):

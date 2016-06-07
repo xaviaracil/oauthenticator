@@ -7,7 +7,7 @@ FROM jupyterhub/jupyterhub
 MAINTAINER Project Jupyter <ipython-dev@scipy.org>
 
 # Install oauthenticator from git
-RUN python3 -m pip install oauthenticator git+https://github.com/xaviaracil/oauthenticator.git
+RUN python3 -m pip install -e git+https://github.com/xaviaracil/oauthenticator.git#egg=oauthenticator
 
 # Create oauthenticator directory and put necessary files in it
 RUN mkdir /srv/oauthenticator
